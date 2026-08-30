@@ -3,6 +3,26 @@ server:
 spring:
   application:
     name: payment-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/payment_db
+    username: admin
+    password: admin123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 apis:
   account-service: http://localhost:8084/accounts
+
+app:
+  kafka:
+    topics:
+      internal-transaction-created: new.internal.transaction.created
+      internal-transaction-created-alt: new.internl.trnsction.cretead
